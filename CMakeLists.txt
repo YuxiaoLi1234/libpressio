@@ -429,6 +429,33 @@ target_link_libraries(libpressio PRIVATE QoZ::QoZ)
 endif()
 
 
+option(LIBPRESSIO_HAS_MSZ "build the MSz plugin" OFF)
+
+if(LIBPRESSIO_HAS_MSZ)
+  set(LIBPRESSIO_METRICS "${LIBPRESSIO_METRICS} MSz")
+
+  if (LIBPRESSIO_HAS_CUDA)
+    set(ENABLE_CUDA ON CACHE INTERNAL "Enable CUDA support for MSz")
+  else()
+    set(ENABLE_CUDA OFF CACHE INTERNAL "Disable CUDA support for MSz")
+  endif()
+  find_package(MSz REQUIRED) 
+  find_package(PkgConfig REQUIRED)
+  pkg_search_module(ZSTD IMPORTED_TARGET GLOBAL libzstd)
+  
+  target_include_directories(libpressio PRIVATE ${MSz_INCLUDE_DIRS})
+  target_link_libraries(libpressio PRIVATE MSz::MSz)
+  
+
+
+  target_sources(libpressio
+      PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/metrics/msz.cc
+  )
+endif()
+
+
+
 option(LIBPRESSIO_HAS_SZ "build the SZ plugin" OFF)
 if(LIBPRESSIO_HAS_SZ)
   set(LIBPRESSIO_COMPRESSORS "${LIBPRESSIO_COMPRESSORS} sz")
@@ -600,17 +627,6 @@ if(LIBPRESSIO_HAS_NDZIP)
     target_link_libraries(libpressio PRIVATE NDZip::ndzip-sycl)
   endif()
 
-endif()
-
-option(LIBPRESSIO_HAS_CUSZP "build the CUSZP plugin" OFF)
-if(LIBPRESSIO_HAS_CUSZP)
-  set(LIBPRESSIO_COMPRESSORS "${LIBPRESSIO_COMPRESSORS} CUSZP")
-  find_package(cuSZp REQUIRED)
-  target_sources(libpressio
-    PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/compressors/cuszp.cc
-    )
-  target_link_libraries(libpressio PRIVATE cuSZp::cuSZp_shared)
 endif()
 
 option(LIBPRESSIO_HAS_FPZIP "build the fpzip plugin" OFF)
