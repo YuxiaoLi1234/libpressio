@@ -1,7 +1,0 @@
-add_test( HighLevel.OptionsCast /global/homes/y/yuxiaoli/libpressio/build/test/test_highlevel [==[--gtest_filter=HighLevel.OptionsCast]==] --gtest_also_run_disabled_tests)
-set_tests_properties( HighLevel.OptionsCast PROPERTIES WORKING_DIRECTORY /global/homes/y/yuxiaoli/libpressio/build/test SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-add_test( HighLevel.OptionsInvalid /global/homes/y/yuxiaoli/libpressio/build/test/test_highlevel [==[--gtest_filter=HighLevel.OptionsInvalid]==] --gtest_also_run_disabled_tests)
-set_tests_properties( HighLevel.OptionsInvalid PROPERTIES WORKING_DIRECTORY /global/homes/y/yuxiaoli/libpressio/build/test SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-add_test( HighLevel.Missing /global/homes/y/yuxiaoli/libpressio/build/test/test_highlevel [==[--gtest_filter=HighLevel.Missing]==] --gtest_also_run_disabled_tests)
-set_tests_properties( HighLevel.Missing PROPERTIES WORKING_DIRECTORY /global/homes/y/yuxiaoli/libpressio/build/test SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set( test_highlevel_TESTS HighLevel.OptionsCast HighLevel.OptionsInvalid HighLevel.Missing)

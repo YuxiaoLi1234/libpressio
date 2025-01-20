@@ -1,5 +1,0 @@
-if(EXISTS "/global/homes/y/yuxiaoli/libpressio/build/test/test_pressio_data[1]_tests.cmake")
-  include("/global/homes/y/yuxiaoli/libpressio/build/test/test_pressio_data[1]_tests.cmake")
-else()
-  add_test(test_pressio_data_NOT_BUILT test_pressio_data_NOT_BUILT)
-endif()

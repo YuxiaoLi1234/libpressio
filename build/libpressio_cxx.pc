@@ -1,9 +1,0 @@
-includedir=/global/homes/y/yuxiaoli/include/libpressio
-libdir=/global/homes/y/yuxiaoli/lib64
-
-Name: Libpressio
-Description: An abstraction between different pressio compressors
-Version: 1.0.3
-Cflags: -I${includedir}
-Libs: -L${libdir} -llibpressio
-Requires: std_compat_cxx
