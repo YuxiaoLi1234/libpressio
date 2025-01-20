@@ -1,4 +1,4 @@
-#include "api/MSz.h" 
+#include "MSz/api/MSz.h" 
 #include "pressio_data.h"
 #include "libpressio_ext/cpp/metrics.h"
 #include "libpressio_ext/cpp/options.h"

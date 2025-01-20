@@ -428,6 +428,30 @@ if(LIBPRESSIO_HAS_QoZ)
 target_link_libraries(libpressio PRIVATE QoZ::QoZ)
 endif()
 
+option(LIBPRESSIO_HAS_MSZ "build the MSz plugin" OFF)
+
+if(LIBPRESSIO_HAS_MSZ)
+  set(LIBPRESSIO_METRICS "${LIBPRESSIO_METRICS} MSz")
+
+  if (LIBPRESSIO_HAS_CUDA)
+    set(ENABLE_CUDA ON CACHE INTERNAL "Enable CUDA support for MSz")
+  else()
+    set(ENABLE_CUDA OFF CACHE INTERNAL "Disable CUDA support for MSz")
+  endif()
+  find_package(MSz REQUIRED) 
+  find_package(PkgConfig REQUIRED)
+  pkg_search_module(ZSTD IMPORTED_TARGET GLOBAL libzstd)
+  
+  target_include_directories(libpressio PRIVATE ${MSz_INCLUDE_DIRS})
+  target_link_libraries(libpressio PRIVATE MSz::MSz)
+  
+
+
+  target_sources(libpressio
+      PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/plugins/metrics/msz.cc
+  )
+endif()
 
 option(LIBPRESSIO_HAS_SZ "build the SZ plugin" OFF)
 if(LIBPRESSIO_HAS_SZ)
