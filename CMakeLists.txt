@@ -428,9 +428,9 @@ if(LIBPRESSIO_HAS_QoZ)
 target_link_libraries(libpressio PRIVATE QoZ::QoZ)
 endif()
 
-option(LIBPRESSIO_HAS_MSZ "build the MSz plugin" OFF)
+option(LIBPRESSIO_HAS_MSz "build the MSz plugin" OFF)
 
-if(LIBPRESSIO_HAS_MSZ)
+if(LIBPRESSIO_HAS_MSz)
   set(LIBPRESSIO_METRICS "${LIBPRESSIO_METRICS} MSz")
 
   if (LIBPRESSIO_HAS_CUDA)
